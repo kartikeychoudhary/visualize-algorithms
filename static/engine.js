@@ -24,31 +24,74 @@ function setup(){
     MAXHEIGHT = y; // maximum height allowed for the bars
     MAXBARS = round((window.innerWidth * 0.9 / 2)/BARWIDTH)-2;
 
-    canvas.position(x,y); // canvas centered
+    canvas.position(x,y); // canvas centered    
     background(231); // canvas color
 
     drawFrames(); // Create the Frames
-
-
 }
 
 function draw(){
-
+    background(231);
 }
 
 function drawFrames(){
-    
+
+    var x = (window.innerWidth * 0.9) / 2;
+    var y = (window.innerHeight * 0.9) / 2;
+
+    maxHeight = y;
+
+    drawBarFrame(); 
+
+    push(); // Outline of Frame
+    stroke(214, 214, 214);
+    strokeWeight(4);
+    noFill();
+    rect(0, 0, window.innerWidth * 0.9, window.innerHeight * 0.9);
+    pop();
 }
 
-class Bars{
-    constructor(array){
-        this.array = array;
-    }
+function drawBarFrame(){
+
+    var x = (window.innerWidth * 0.9) / 2;
+    var y = (window.innerHeight * 0.9) / 2;
+
+    maxHeight = y;
+
+    push(); // Bars Frame
+    fill(250, 250, 250);
+    stroke(250, 250, 250);
+    strokeWeight(2);
+    rect(0, 0, window.innerWidth * 0.9, y + textHeight);
+    pop();
 }
 
 class Bar{
-    constructor(height, color){
+    constructor(height, color, value){
         this.height = height;
         this.color = color;
+        this.value = value;
+
+        function drawBar(x){ // ( x , MAXHEIGHT) coordinates
+        push();
+        if(color == 0){
+            fill(255,0,0);
+        }else if(color == 1){
+            fill(0,255,0);
+        }else if(color == 2){
+            //color orange
+        }
+        rect(x, MAXHEIGHT - this.height, BARWIDTH, this.height);
+        pop();
+
+        var space = BARWIDTH - textWidth(this.value);
+        if(space>=0){
+            push();
+            textSize(textHeight*0.5);
+            fill(0,0,0);
+            text(this.value, space/2 + x, MAXHEIGHT + TEXTHEIGHT / 2);
+            pop();
+        }
+        }
     }
 }
