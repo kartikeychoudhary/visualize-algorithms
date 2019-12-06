@@ -1,0 +1,20 @@
+body {
+  background-color: rgb(245, 245, 245);
+  background-size: 100% 100%;
+  margin: 0;
+  overflow: hidden;
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  /* This centers our sketch vertically. */
+  align-items: center;
+}
+
+.box {
+  background-color: rgba(231, 231, 231, 1);
+  color: white;
+  font-weight: bold;
+  margin: 100px auto;
+  height: 500px;
+  width: 90%;
+}
