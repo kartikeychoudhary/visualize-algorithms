@@ -66,8 +66,19 @@ function drawBarFrame(){
     pop();
 }
 
+function convertRange(OldValue, OldMin, OldMax, NewMin, NewMax) {
+    var NewValue =
+        ((OldValue - OldMin) * (NewMax - NewMin)) / (OldMax - OldMin) + NewMin;
+    //console.log(NewValue);
+    return NewValue;
+}
+
+function createBars(array){
+
+}
+
 class Bar{
-    constructor(height, color, value){
+    constructor(height, color=-1, value){
         this.height = height;
         this.color = color;
         this.value = value;
@@ -80,6 +91,8 @@ class Bar{
             fill(0,255,0);
         }else if(color == 2){
             //color orange
+        }else{
+            fill(255,255,255);
         }
         rect(x, MAXHEIGHT - this.height, BARWIDTH, this.height);
         pop();
