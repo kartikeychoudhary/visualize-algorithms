@@ -2,9 +2,16 @@ function Tree(){
     this.root = null;
 }
 
+Tree.prototype.draw = function(){
+    this.root.visitDraw(this);
+}
 
 Tree.prototype.traverse = function(){
     this.root.visit();
+}
+
+Tree.prototype.height = function(){
+    return this.root.height(0);
 }
 
 Tree.prototype.addValues = function(val){

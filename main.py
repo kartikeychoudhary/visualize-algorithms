@@ -13,6 +13,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/binarytree')
+def binarysearch():
+    return render_template('binarytree.html')
+
 @app.route('/bubblesort', methods=['POST'])
 def bubblesort():
     json = request.get_json()
