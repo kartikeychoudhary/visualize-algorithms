@@ -11,7 +11,8 @@ Tree.prototype.traverse = function(){
 }
 
 Tree.prototype.height = function(){
-    return this.root.height(0);
+    this.root.visit();
+    return this.root.height(this);
 }
 
 Tree.prototype.addValues = function(val){

@@ -120,7 +120,6 @@ class Bar{
         this.height = height;
         this.color = color;
         this.value = value;
-        
     }
 
     drawBar(x){ // ( x , MAXHEIGHT) coordinates
@@ -139,7 +138,7 @@ class Bar{
         pop();
 
         var space = BARWIDTH - textWidth(this.value);
-        if(space>=0){
+        if(space>0){
             push();
             textSize(TEXTHEIGHT*0.5);
             fill(0,0,0);

@@ -1,3 +1,5 @@
+var arr = [];
+
 function Node(val){
     this.value = val;
     this.right = null;
@@ -14,24 +16,26 @@ Node.prototype.visit = function(){
         this.left.visit();
     }
     console.log(this.value, this.level);
-
+    arr.push(this);
     if(this.right!=null){
         this.right.visit();
     }
 }
 
-Node.prototype.height = function(height){
-    if(this.left!=null){
-        return this.left.height(height+1);
+Node.prototype.height = function(){
+    var h = 0;
+    for(var i =0; i<arr.length;i++){
+        if(arr[i].level > h){
+            h = arr[i].level;
+        }
     }
-    if(this.right!=null){
-        return this.right.height(height+1);
-    }
-    return height;
+
+    return h;
 }
 
 
 Node.prototype.visitDraw = function(parent){
+
     if(this.left!=null){
         this.left.visitDraw(this);
     }
@@ -53,7 +57,9 @@ Node.prototype.addNode = function(node){
         if(this.left == null){
             node.level = this.level+1;
 
-            node.x = this.x - this.x/(node.level+1);
+            node.x = this.x - innerWidth/(node.level+4);
+            print("L", this.x,node.x, node.value);
+
             node.y = this.y + 50;
 
             this.left = node;
@@ -66,7 +72,9 @@ Node.prototype.addNode = function(node){
         if(this.right == null){
             node.level = this.level+1;
 
-            node.x = this.x + this.x/(node.level+1);
+            node.x = this.x + innerWidth/(node.level+5);
+            print("R", this.x,node.x, node.value);
+
             node.y = this.y + 50;
 
             this.right = node;
