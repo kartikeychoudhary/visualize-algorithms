@@ -22,6 +22,44 @@ async function postData(url = '', data = {}) {
     return await response.json(); // parses JSON response into native JavaScript objects
   }
 
-  function bubblesort(){
-    
+  async function bubblesort(BAR_ARRAY){
+
+    Array_Steps = []; 
+    Array_Swap = [];
+    Array_Index = [];
+
+    var swap = 0;
+    for(var i = 0; i < BAR_ARRAY.length; i++){
+      for(var j = 0; j< BAR_ARRAY.length-i-1; i++){
+
+        if(BAR_ARRAY[j].value > BAR_ARRAY[j+1].value){
+
+          BAR_ARRAY[j].color = 1;
+          BAR_ARRAY[j+1].color = 1;
+          Array_Steps.push(BAR_ARRAY);
+          // BAR_ARRAY[j].color = -1;
+          // BAR_ARRAY[j+1].color = -1;
+
+          var temp = BAR_ARRAY[j]
+          BAR_ARRAY[j] = BAR_ARRAY[j+1]
+          BAR_ARRAY[j+1] = temp;
+
+        }else{
+          BAR_ARRAY[j].color = 0;
+          BAR_ARRAY[j+1].color = 0;
+          Array_Steps.push(BAR_ARRAY);
+          // BAR_ARRAY[j].color = -1;
+          // BAR_ARRAY[j+1].color = -1;
+
+        }
+      }
+
+      if(swap == 0){
+        break;
+      }
+      
+    }
+
+    return await Array_Steps;
+
   }
