@@ -52,19 +52,22 @@ async function draw(){
     background(25);
     drawBarFrame();
     createBars();
+
+
     if(keyIsDown(66) && !SOLVEFLAG){
         SOLVEFLAG =true;
-        STEPS = await bubblesort(BARS);
-        // console.log(STEPS)
+        STEPS = await bubbleSortArray(BARS);
+        console.log(STEPS);
     }
-    checkSort();
+     checkSort();
 }
 
 function checkSort(){
     if(SOLVEFLAG && frameCount % SPEED == 0){
-        //console.log(STEPS[0]);
-        var temp = STEPS[0];
-        createBarsStep(temp);
+        console.log(STEPS[COUNT]);
+        BARS = STEPS[COUNT];
+        // createBarsStep(temp);
+        // drawBars(temp);
         COUNT++;
 
         if(COUNT > STEPS.length){
@@ -134,6 +137,7 @@ function convertRange(OldValue, OldMin, OldMax, NewMin, NewMax) {
 }
 
 function createBars(){
+    // console.log(BARS);  
     for(var index = 0;index < BARS.length; index++){
         var bar = BARS[index];
         bar.drawBar(index*BARSPACE*BARWIDTH+BARWIDTH);
@@ -157,12 +161,13 @@ class Bar{
 
     drawBar(x){ // ( x , MAXHEIGHT) coordinates
         push();
-        if(color == 0){
-            fill(255,0,0); // RED
-        }else if(color == 1){
-            fill(0,255,0); // GREEN
-        }else if(color == 2){
-            //color orange
+
+        if(this.color == 0){
+            fill(255,0,0); // RED for 0
+        }else if(this.color == 1){
+            fill(0,255,0); // GREEN for 1
+        }else if(this.color == 2){
+            //color orange 
         }else{
             fill(200,200,200);
         }
@@ -179,4 +184,11 @@ class Bar{
             pop();
         }
     }   
+}
+
+function drawBars(arrayBar){
+    for(var index = 0; index < arrayBar.length; index++){
+        var barObject = arrayBar[index];
+        barObject.drawBar(index*BARSPACE*BARWIDTH+BARWIDTH);
+    }
 }

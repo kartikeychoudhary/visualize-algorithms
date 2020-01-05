@@ -2,6 +2,9 @@ var Array_Steps = []; // arrays which holds the details from the swaps of bubble
 var Array_Swap = [];
 var Array_Index = [];
 
+var MIN;
+var MAX;
+
 var url = "http://127.0.0.1:5000/bubblesort";
 
 async function postData(url = '', data = {}) {
@@ -33,17 +36,18 @@ async function postData(url = '', data = {}) {
       for(var j = 0; j< BAR_ARRAY.length-i-1; i++){
 
         if(BAR_ARRAY[j].value > BAR_ARRAY[j+1].value){
-
+          swap += 1;
           BAR_ARRAY[j].color = 1;
           BAR_ARRAY[j+1].color = 1;
           Array_Steps.push(BAR_ARRAY);
           // BAR_ARRAY[j].color = -1;
           // BAR_ARRAY[j+1].color = -1;
 
-          var temp = BAR_ARRAY[j]
-          BAR_ARRAY[j] = BAR_ARRAY[j+1]
-          BAR_ARRAY[j+1] = temp;
-
+          // var temp = BAR_ARRAY[j]
+          // BAR_ARRAY[j] = BAR_ARRAY[j+1]
+          // BAR_ARRAY[j+1] = temp;
+          
+          // Array_Steps.push(BAR_ARRAY);
         }else{
           BAR_ARRAY[j].color = 0;
           BAR_ARRAY[j+1].color = 0;
@@ -60,6 +64,75 @@ async function postData(url = '', data = {}) {
       
     }
 
-    return await Array_Steps;
+    return Array_Steps;
+  }
+
+
+  async function bubbleSortArray(BAR_ARRAY){
+
+
+
+    Array_Steps = [];
+    var swap = 0;
+
+
+    for(var i = 0; i < BAR_ARRAY.length; i++){
+      for(var j = 0; j < BAR_ARRAY.length-1-i; j++){
+
+        if(BAR_ARRAY[j].value > BAR_ARRAY[j+1].value){
+          swap += 1;
+
+          // BAR_ARRAY[j].color = 1;
+          // BAR_ARRAY[j+1].color = 1;
+          // Array_Steps.push(BAR_ARRAY);
+          // BAR_ARRAY[j].color = -1;
+          // BAR_ARRAY[j+1].color = -1;
+
+          var temp = BAR_ARRAY[j]
+          BAR_ARRAY[j] = BAR_ARRAY[j+1]
+          BAR_ARRAY[j+1] = temp;
+          
+          var step = []
+          for(var x = 0; i<BAR_ARRAY.length;x++){
+            // console.log(bar);
+            step.push(new Bar(BAR_ARRAY[x].height, -1, BAR_ARRAY[x].value));
+          }
+
+          // console.log(step);
+          // sleep(20);
+
+          step[j].color = 1;
+          step[j+1].color = 1;
+          Array_Steps.push(step);
+
+          // BAR_ARRAY[j].color = -1;
+          // BAR_ARRAY[j+1].color = -1;
+
+        }else{
+
+          var step = []
+
+          for(var x = 0; i<BAR_ARRAY.length;x++){
+            // console.log(bar);
+            step.push(new Bar(BAR_ARRAY[x].height, -1, BAR_ARRAY[x].value));
+          }
+
+          step[j].color = 0;
+          step[j+1].color = 0;
+          Array_Steps.push(step);
+
+          // BAR_ARRAY[j].color = -1;
+          // BAR_ARRAY[j+1].color = -1;
+
+        }
+
+      }
+
+      if(swap == 0){
+        break;
+      }
+    }
+
+    return Array_Steps;
 
   }
