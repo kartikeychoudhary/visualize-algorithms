@@ -68,9 +68,9 @@ async function postData(url = '', data = {}) {
   }
 
 
-  async function bubbleSortArray(BAR_ARRAY){
+  async function bubbleSortArray(ARRAY){
 
-
+    BAR_ARRAY = Array.from(ARRAY);
 
     Array_Steps = [];
     var swap = 0;
@@ -78,6 +78,7 @@ async function postData(url = '', data = {}) {
 
     for(var i = 0; i < BAR_ARRAY.length; i++){
       for(var j = 0; j < BAR_ARRAY.length-1-i; j++){
+        // console.log(BAR_ARRAY[j].height, BAR_ARRAY[j].value, BAR_ARRAY[j].color)
 
         if(BAR_ARRAY[j].value > BAR_ARRAY[j+1].value){
           swap += 1;
@@ -91,12 +92,16 @@ async function postData(url = '', data = {}) {
           var temp = BAR_ARRAY[j]
           BAR_ARRAY[j] = BAR_ARRAY[j+1]
           BAR_ARRAY[j+1] = temp;
-          
-          var step = []
-          for(var x = 0; i<BAR_ARRAY.length;x++){
-            // console.log(bar);
-            step.push(new Bar(BAR_ARRAY[x].height, -1, BAR_ARRAY[x].value));
+          var step = [];
+
+          for(var x = 0; x < BAR_ARRAY.length; x++){
+            // console.log(BAR_ARRAY[x].height);
+            var temp = new Bar(BAR_ARRAY[x].height, BAR_ARRAY[x].color, BAR_ARRAY[x].value);
+            step.push(temp);
+            // console.log(temp);
           }
+
+          // var step = Array.from(BAR_ARRAY);
 
           // console.log(step);
           // sleep(20);
@@ -110,12 +115,16 @@ async function postData(url = '', data = {}) {
 
         }else{
 
-          var step = []
+          var step = [];
 
-          for(var x = 0; i<BAR_ARRAY.length;x++){
-            // console.log(bar);
-            step.push(new Bar(BAR_ARRAY[x].height, -1, BAR_ARRAY[x].value));
+          for(var x = 0; x < BAR_ARRAY.length; x++){
+            // console.log(BAR_ARRAY[x].height);
+            var temp = new Bar(BAR_ARRAY[x].height, BAR_ARRAY[x].color, BAR_ARRAY[x].value);
+            step.push(temp);
+            // console.log(temp);
           }
+
+          // var step = Array.from(BAR_ARRAY);
 
           step[j].color = 0;
           step[j+1].color = 0;
@@ -127,12 +136,12 @@ async function postData(url = '', data = {}) {
         }
 
       }
-
+      BAR_ARRAY[BAR_ARRAY.length-1-i].color=2;
       if(swap == 0){
         break;
       }
     }
-
+    console.log(Array_Steps);
     return Array_Steps;
 
   }
