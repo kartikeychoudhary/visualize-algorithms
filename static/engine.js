@@ -59,7 +59,12 @@ async function draw(){
         STEPS = await bubbleSortArray(BARS);
         // console.log(STEPS);
     }
-     checkSort();
+    if(keyIsDown(73) && !SOLVEFLAG){
+        SOLVEFLAG =true;    
+        STEPS = await insertionSortArray(BARS);
+        // console.log(STEPS);
+    }
+    checkSort();
 }
 
 function checkSort(){
@@ -171,7 +176,6 @@ class Bar{
             fill(0,255,0); // *  GREEN for 1
         }else if(this.color == 2){
             fill(255,130,0);
-            // ! color orange 
         }else{
             fill(200,200,200);
         }
