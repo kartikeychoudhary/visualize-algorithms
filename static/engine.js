@@ -1,3 +1,5 @@
+// ! [ ALPHA BRANCH ]
+
 var BARWIDTH = 35 // * Width of Bars also determines the number of bars to be displayed.
 var BARSPACE=1;
 var TEXTHEIGHT = 40; // * Height of the Text below the Bars.
