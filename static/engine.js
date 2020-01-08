@@ -28,6 +28,8 @@ var COUNT = 0; // * step counter
 
 var RESULTJSON; // * contains the steps for the bubble sort. 
 
+var KEYPRESSED = false;
+
 function setup(){
     var canvas = createCanvas(window.innerWidth, window.innerHeight); // * smaller then the full window.
     var x = (windowWidth - width) / 2; // * finding the center coordinates
@@ -48,11 +50,30 @@ function setup(){
     
 }
 
+async function reset(){
+    drawFrames(); // * Create the Frames
+
+   
+    SOLVEFLAG = false;
+    // draw();
+
+    STEPS = [];
+
+    BARS = [];
+
+    SOLVEFLAG = false; // * True means animation of solving the BARS
+
+    Array_Random = []; 
+    COUNT = 0;
+
+    randomArray();
+    arrayToBar();
+}
+
 async function draw(){
     background(25);
     drawBarFrame();
     createBars();
-
 
     if(keyIsDown(66) && !SOLVEFLAG){
         SOLVEFLAG =true;
@@ -62,27 +83,56 @@ async function draw(){
     if(keyIsDown(73) && !SOLVEFLAG){
         SOLVEFLAG =true;    
         STEPS = await insertionSortArray(BARS);
-        // console.log(STEPS);
+        console.log(STEPS);
     }
+    if(keyIsDown(83) && !SOLVEFLAG){
+        SOLVEFLAG =true;    
+        STEPS = await selectionSortArray(BARS);
+        console.log(STEPS);
+    }
+
+    if(keyIsDown(49) && !KEYPRESSED){
+        console.log(SPEED);
+        if(SPEED-1 != 0){
+            SPEED-=1;
+        }
+        KEYPRESSED = true;
+    }
+    if(keyIsDown(50) && !KEYPRESSED){
+       SPEED+=1;
+       KEYPRESSED = true;
+    }
+    if(keyIsDown(82) && !KEYPRESSED){
+        reset();
+        KEYPRESSED = true;
+    }
+
     checkSort();
+    KEYPRESSED = false;
 }
 
 function checkSort(){
     if(SOLVEFLAG && frameCount % SPEED == 0){
         // console.log(COUNT);
-        if(STEPS[COUNT].length > 0 && COUNT != -1){
+        try{
 
-            BARS = STEPS[COUNT];
-            // * createBarsStep(temp);
-            // * drawBars(temp);
-            COUNT++;
+            if(STEPS[COUNT].length > 0 && COUNT != -1){
+
+                BARS = STEPS[COUNT];
+                // * createBarsStep(temp);
+                // * drawBars(temp);
+                COUNT++;
+    
+            }
+            if(COUNT >= STEPS.length){
+                COUNT = -1;
+                SOLVEFLAG = false;
+            }
+
+        }finally{
 
         }
-        if(COUNT >= STEPS.length){
-            COUNT = -1;
-            SOLVEFLAG = false;
-        }
-
+        
     }
 }
 

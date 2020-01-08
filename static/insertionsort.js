@@ -1,8 +1,5 @@
 var Array_Steps = []; // arrays which holds the details from the swaps of bubble sort
 
-var MIN;
-var MAX;
-
 async function insertionSortArray(ARRAY){
 
     BAR_ARRAY = Array.from(ARRAY);
