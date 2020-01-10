@@ -4,7 +4,6 @@ from datetime import datetime
 import os
 import requests
 import flask
-from algorithms.bubblesort import BubbleSort
 
 app = Flask(__name__)
 
@@ -16,13 +15,6 @@ def index():
 def binarysearch():
     return render_template('binarytree.html')
 
-@app.route('/bubblesort', methods=['POST'])
-def bubblesort():
-    json = request.get_json()
-    array = json['array']
-    obj = BubbleSort(array)
-    json = obj.sortSteps()
-    return jsonify(json)
 
 if __name__ == '__main__':
     app.run(debug=True)

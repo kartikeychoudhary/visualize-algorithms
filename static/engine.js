@@ -108,8 +108,10 @@ async function draw(){
         reset();
         KEYPRESSED = true;
     }
-
-    checkSort();
+    for(var x = 0;x < 1; x++){
+        checkSort();
+    }
+    
     KEYPRESSED = false;
 }
 
