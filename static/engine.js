@@ -1,6 +1,6 @@
 // ! [ ALPHA BRANCH ]
 
-var BARWIDTH = 35 // * Width of Bars also determines the number of bars to be displayed.
+var BARWIDTH = 5 // * Width of Bars also determines the number of bars to be displayed.
 var BARSPACE=1;
 var TEXTHEIGHT = 40; // * Height of the Text below the Bars.
 var RANGEMODIFIER = 20; // * Helps creating a new Range for desired height.
@@ -90,6 +90,11 @@ async function draw(){
     if(keyIsDown(83) && !SOLVEFLAG){
         SOLVEFLAG =true;    
         STEPS = await selectionSortArray(BARS);
+        console.log(STEPS);
+    }
+    if(keyIsDown(81) && !SOLVEFLAG){
+        SOLVEFLAG = true;    
+        STEPS = await quickSortArray(BARS);
         console.log(STEPS);
     }
 
