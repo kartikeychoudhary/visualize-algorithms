@@ -1,5 +1,10 @@
 // ! [ ALPHA BRANCH ]
 
+var WIDTH_THRESHOLD = 750;
+var SETTING = false;
+var DEVICE = ["mobile", "desktop"];
+var DEVICE_INDEX = 1;
+
 var BARWIDTH = 5 // * Width of Bars also determines the number of bars to be displayed.
 var BARSPACE=1;
 var TEXTHEIGHT = 40; // * Height of the Text below the Bars.

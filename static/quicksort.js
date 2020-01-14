@@ -12,8 +12,27 @@ function partition(ARRAY, low, high){
             var temp = ARRAY[i];
             ARRAY[i] = ARRAY[j];
             ARRAY[j] = temp;
+
+            var step = [];
+
+        for(var x = 0; x < ARRAY.length; x++){
+            // console.log(BAR_ARRAY[x].height);
+            var temp = new Bar(ARRAY[x].height, ARRAY[x].color, ARRAY[x].value);
+            step.push(temp);
+            // console.log(temp);
+          }
+
+          step[low].color = 0;
+          step[high].color = 0;
+          step[j].color = 1;
+          step[i].color = 1;
+          Array_Steps.push(step);
+
+
         }
-        var step = [];
+        else{
+
+            var step = [];
 
         for(var x = 0; x < ARRAY.length; x++){
             // console.log(BAR_ARRAY[x].height);
@@ -24,7 +43,12 @@ function partition(ARRAY, low, high){
           step[low].color = 0;
           step[high].color = 0;
           step[j].color = 1;
+          step[i+1].color = 2;
+
           Array_Steps.push(step);
+
+        }
+        
     }
     var temp = ARRAY[i+1];
     ARRAY[i+1] = ARRAY[high];
@@ -63,12 +87,19 @@ async function quickSortArray(ARRAY){
     BAR_ARRAY = Array.from(ARRAY);
 
     Array_Steps = [];
-    console.log(ARRAY);
+    // console.log(ARRAY);
 
     quicksort(ARRAY, 0, ARRAY.length-1);
 
-    console.log(ARRAY);
-    Array_Steps.push(ARRAY);
+    var step = [];
+
+    for(var x = 0; x < ARRAY.length; x++){
+      // console.log(BAR_ARRAY[x].height);
+      var temp = new Bar(ARRAY[x].height, 2, ARRAY[x].value);
+      step.push(temp);
+      // console.log(temp);
+    }
+    Array_Steps.push(step);
     return Array_Steps
 
   }
